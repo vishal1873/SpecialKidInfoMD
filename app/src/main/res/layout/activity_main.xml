@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<!--
+    This is the app bar using material design
+-->
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
+
+
+  <!--  This is the drawer layout. The framelayout is for the main content
+    The fragment is for the drawer-->
+    <android.support.v4.widget.DrawerLayout
+
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/frame_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+        <fragment
+            android:id="@+id/fragment_navigation_drawer"
+            android:name="com.livehospital.specialkidinfomd.NavigationDrawerFragment"
+            android:layout_width="@dimen/nav_drawer_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:layout="@layout/navigation_drawer_fragment"
+            tools:layout="@layout/navigation_drawer_fragment" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+
+</LinearLayout>
