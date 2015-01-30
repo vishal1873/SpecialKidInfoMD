@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/thumbnail"
         android:layout_width="80dp"
-        android:src="@drawable/school"
+        android:src="@drawable/ic_account_outline_grey600_24dp"
         android:layout_height="80dp"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="20dp" />

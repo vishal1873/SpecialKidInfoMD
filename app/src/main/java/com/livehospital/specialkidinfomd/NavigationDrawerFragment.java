@@ -18,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.livehospital.specialkidinfomd.adapter.NavigationDrawerAdapter;
 import com.livehospital.specialkidinfomd.common.Constants;
 
 import java.util.ArrayList;
@@ -74,30 +75,30 @@ public class NavigationDrawerFragment extends Fragment {
     public static List<Information> getData() {
         //load only static data inside a drawer
         List<Information> data = new ArrayList<>();
-        int[] icons = {R.drawable.ic_number1, R.drawable.ic_number2, R.drawable.ic_number3, R.drawable.ic_number4,R.drawable.ic_number4};
+
         String[] titles = {"ABA Providers", "OT Providers", "Speech Therapist", "Special Schools","Set Location"};
         Information current = new Information();
-        current.iconId = icons[0];
+
         current.title = titles[0];
         data.add(current);
 
         current = new Information();
-        current.iconId = icons[1];
+
         current.title = titles[1];
         data.add(current);
 
         current = new Information();
-        current.iconId = icons[2];
+
         current.title = titles[2];
         data.add(current);
 
         current = new Information();
-        current.iconId = icons[3];
+
         current.title = titles[3];
         data.add(current);
 
         current = new Information();
-        current.iconId = icons[4];
+
         current.title = titles[4];
         data.add(current);
 
@@ -158,6 +159,7 @@ public class NavigationDrawerFragment extends Fragment {
 
                 Log.d(LOG_TAG, "Inside long click" + position);
                 invokeMenu(position);
+                mDrawerLayout.closeDrawers();
             }
         }));
 
