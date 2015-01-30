@@ -39,7 +39,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Information current=data.get(position);
         holder.title.setText(current.title);
-        holder.icon.setImageResource(current.iconId);
+        //holder.icon.setImageResource(current.iconId);
     }
     @Override
     public int getItemCount() {
@@ -48,11 +48,11 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title;
-        ImageView icon;
+        //ImageView icon;
         public MyViewHolder(View itemView) {
             super(itemView);
             title= (TextView) itemView.findViewById(R.id.listText);
-            icon= (ImageView) itemView.findViewById(R.id.listIcon);
+            //icon= (ImageView) itemView.findViewById(R.id.listIcon);
         }
     }
 }

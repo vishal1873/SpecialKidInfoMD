@@ -18,28 +18,33 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.livehospital.specialkidinfomd.common.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * The navigation drawer has the main menu items
  */
 public class NavigationDrawerFragment extends Fragment {
 
 
-    public interface OnUserChoiceClickedListener {
-        public void onSchoolInfoRequiredClicked();
-        public void onABAInfoRequiredClicked();
-        public void onSetLocationClicked();
+    // This interface is implemented by the main activity
+    // This interface represents menu selection in the NavigationDrawer
+     public interface MenuSelectionListener {
+        public void onSchoolMenuClicked();
+        public void onABAMenuClicked();
+        public void onSetLocationMenuClicked();
 
     }
 
     private final String LOG_TAG = NavigationDrawerFragment.class.getSimpleName();
+
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
 
-    public static final String PREF_FILE_NAME = "testpref";
+
     public static final String KEY_USER_LEARNED_DRAWER = "user_learned_drawer";
 
     private boolean mUserLearnedDrawer;
@@ -48,7 +53,7 @@ public class NavigationDrawerFragment extends Fragment {
     private RecyclerView recyclerView;
     private NavigationDrawerAdapter adapter;
 
-    private OnUserChoiceClickedListener mCallback;
+    private MenuSelectionListener mCallback;
 
 
     @Override
@@ -58,7 +63,7 @@ public class NavigationDrawerFragment extends Fragment {
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
-            mCallback = (OnUserChoiceClickedListener) activity;
+            mCallback = (MenuSelectionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnHeadlineSelectedListener");
@@ -70,8 +75,7 @@ public class NavigationDrawerFragment extends Fragment {
         //load only static data inside a drawer
         List<Information> data = new ArrayList<>();
         int[] icons = {R.drawable.ic_number1, R.drawable.ic_number2, R.drawable.ic_number3, R.drawable.ic_number4,R.drawable.ic_number4};
-        String[] titles = {"ABA", "OT", "Speech Therapy", "School","Set Location"};
-
+        String[] titles = {"ABA Providers", "OT Providers", "Speech Therapist", "Special Schools","Set Location"};
         Information current = new Information();
         current.iconId = icons[0];
         current.title = titles[0];
@@ -101,7 +105,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     public static void saveToPreferences(Context context, String preferenceName, String preferenceValue) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.USER_PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(preferenceName, preferenceValue);
         editor.apply();
@@ -109,7 +113,7 @@ public class NavigationDrawerFragment extends Fragment {
 
 
     public static String readFromPreferences(Context context, String preferenceName, String defaultValue) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.USER_PREFERENCES, Context.MODE_PRIVATE);
         return sharedPreferences.getString(preferenceName, defaultValue);
     }
 
@@ -166,15 +170,15 @@ public class NavigationDrawerFragment extends Fragment {
     public void invokeMenu(int position) {
         switch (position) {
             case 0:
-                mCallback.onABAInfoRequiredClicked();
+                mCallback.onABAMenuClicked();
                 break;
 
             case 3:
-                mCallback.onSchoolInfoRequiredClicked();
+                mCallback.onSchoolMenuClicked();
                 break;
 
             case 4:
-                mCallback.onSetLocationClicked();
+                mCallback.onSetLocationMenuClicked();
                 break;
 
         }

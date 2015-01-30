@@ -1,6 +1,7 @@
 package com.livehospital.specialkidinfomd;
 
 import android.content.SharedPreferences;
+import android.provider.SyncStateContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -10,18 +11,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.livehospital.specialkidinfomd.sync.SpecialKidInfoSyncAdapter;
 
+import com.livehospital.specialkidinfomd.sync.SpecialKidInfoSyncAdapter;
+import com.livehospital.specialkidinfomd.common.Constants;
 
 public class MainActivity extends ActionBarActivity implements
         LocationFragment.OnLocationSelectedListener,
-        NavigationDrawerFragment.OnUserChoiceClickedListener
+        NavigationDrawerFragment.MenuSelectionListener
 
 
 {
     public static final String MENU_SELECTED = "menuSelected";
     public static final String LOCATION = "Location";
-    public static final String USER_PREFERENCES = "UserPreferences";
+
     private Toolbar toolbar;
     private NavigationDrawerFragment mNavigationDrawerFragmentFragment;
 
@@ -88,7 +90,7 @@ public class MainActivity extends ActionBarActivity implements
 
     private void storeLocationInPreferences(String location) {
 
-        SharedPreferences settings = getSharedPreferences(USER_PREFERENCES, 0);
+        SharedPreferences settings = getSharedPreferences(Constants.USER_PREFERENCES, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(LOCATION,location);
 
@@ -98,7 +100,7 @@ public class MainActivity extends ActionBarActivity implements
 
 
     @Override
-    public void onSchoolInfoRequiredClicked() {
+    public void onSchoolMenuClicked() {
 
         menuAction("school");
 
@@ -135,7 +137,7 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     @Override
-    public void onABAInfoRequiredClicked() {
+    public void onABAMenuClicked() {
 
         menuAction("ABA");
 
@@ -144,7 +146,7 @@ public class MainActivity extends ActionBarActivity implements
     @Override
 
     // This is the main menu item from the drawer. User can set the location directly.
-    public void onSetLocationClicked() {
+    public void onSetLocationMenuClicked() {
 
         Fragment fragment = new LocationFragment();
 
@@ -156,7 +158,7 @@ public class MainActivity extends ActionBarActivity implements
 
     public boolean isLocationSet()
     {
-        SharedPreferences settings = getSharedPreferences(USER_PREFERENCES, 0);
+        SharedPreferences settings = getSharedPreferences(Constants.USER_PREFERENCES, 0);
         String location = settings.getString(LOCATION, null);
         if (location == null)
             return false;
