@@ -39,6 +39,9 @@ public class SpecialKidInfoContract {
         public static final String COLUMN_SERVICE_PROVIDER_WEB_SITE= "service_provider_website";
         public static final String COLUMN_SERVICE_PROVIDER_LOCATION = "service_provider_location";
 
+        public static final String  COLUMN_SERVICE_PROVIDER_ADDRESS= "service_provider_address";
+        public static final String COLUMN_SERVICE_PROVIDER_REMARK = "service_provider_remark";
+
 
         public static Uri buildServiceProviderUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
@@ -46,6 +49,9 @@ public class SpecialKidInfoContract {
 
 
         public static Uri buildServiceProviderWithType (String type) {
+
+            //TODO: This hard coding of bangalore needs to be removed.
+
             return CONTENT_URI.buildUpon().appendPath("bangalore").appendPath(type).build();
         }
 

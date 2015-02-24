@@ -31,7 +31,9 @@ public class SpecialKidInfoSyncAdapter extends AbstractThreadedSyncAdapter {
 
     // Interval at which to com.livehospital.specialkidinfomd.sync with the weather, in milliseconds.
     // 60 seconds (1 minute) * 180 = 3 hours
-    public static final int SYNC_INTERVAL = 24*60*60;
+    //public static final int SYNC_INTERVAL = 24*60*60;
+
+    public static final int SYNC_INTERVAL = 60;
     public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
 
 
@@ -72,6 +74,8 @@ public class SpecialKidInfoSyncAdapter extends AbstractThreadedSyncAdapter {
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LAND_LINE_NUMBER, sp.getLandlineNumber());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_WEB_SITE, sp.getWebsite());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LOCATION, sp.getLocation());
+                data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_ADDRESS, sp.getAddress());
+                data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_REMARK, sp.getRemark());
 
                 Log.d(LOG_TAG, "The service provider"+sp.toString());
 
@@ -151,8 +155,11 @@ public class SpecialKidInfoSyncAdapter extends AbstractThreadedSyncAdapter {
         Account account = getSyncAccount(context);
         String authority = context.getString(R.string.content_authority);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+
+
             // we can enable inexact timers in our periodic com.livehospital.specialkidinfomd.sync
             SyncRequest request = new SyncRequest.Builder().
+                    setExtras(new Bundle()).
                     syncPeriodic(syncInterval, flexTime).
                     setSyncAdapter(account, authority).build();
             ContentResolver.requestSync(request);

@@ -143,6 +143,8 @@ public class SpecialKidInfoProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
+
+        //TODO : To find why this does not work. The UI does not change without refresh. Need to find out.
         getContext().getContentResolver().notifyChange(uri, null);
         return returnUri;
     }

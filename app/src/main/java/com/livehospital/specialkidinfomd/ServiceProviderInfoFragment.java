@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.livehospital.specialkidinfomd.adapter.ServiceProviderInfoAdapter;
@@ -35,6 +36,9 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
             ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LAND_LINE_NUMBER,
             ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_EMAIL_ADDRESS,
             ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_WEB_SITE,
+            ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_ADDRESS,
+            ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_REMARK,
+
 
     };
 
@@ -83,6 +87,26 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
         // Get a reference to the ListView, and attach this adapter to it.
         ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
         listView.setAdapter(mServiceProviderAdapter);
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                Cursor cursor = mServiceProviderAdapter.getCursor();
+                if (cursor != null && cursor.moveToPosition(position)) {
+                   /* Intent intent = new Intent(getActivity(), DetailActivity.class)
+                            .putExtra(DetailActivity.DATE_KEY, cursor.getString(COL_WEATHER_DATE));
+                    startActivity(intent);*/
+
+                    ((Callback)getActivity())
+                            .onServiceProviderItemSelected(cursor);
+                }
+
+            }
+        });
+
 
         Log.d(LOG_TAG, "Exiting on CreateView");
 
@@ -135,6 +159,18 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
 
 
 
+    }
+
+    /**
+     * A callback interface that all activities containing this fragment must
+     * implement. This mechanism allows activities to be notified of item
+     * selections.
+     */
+    public interface Callback {
+        /**
+         * DetailFragmentCallback for when an item has been selected.
+         */
+        public void onServiceProviderItemSelected(Cursor cursor);
     }
 
     public Uri getServiceProviderURI() {

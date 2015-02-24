@@ -1,6 +1,7 @@
 package com.livehospital.specialkidinfomd;
 
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.provider.SyncStateContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,19 +11,25 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
+import com.livehospital.specialkidinfomd.data.SpecialKidInfoContract;
+import com.livehospital.specialkidinfomd.data.SpecialKidInfoContract.ServiceProviderInfo;
 import com.livehospital.specialkidinfomd.sync.SpecialKidInfoSyncAdapter;
 import com.livehospital.specialkidinfomd.common.Constants;
 
 public class MainActivity extends ActionBarActivity implements
         LocationFragment.OnLocationSelectedListener,
-        NavigationDrawerFragment.MenuSelectionListener
+        NavigationDrawerFragment.MenuSelectionListener,
+    ServiceProviderInfoFragment.Callback
 
 
 {
     public static final String MENU_SELECTED = "menuSelected";
     public static final String LOCATION = "Location";
+
+    public static final String SELECTED_SERVICE_PROVIDER_INFO = "selected_service_provider_info";
 
     private Toolbar toolbar;
     private NavigationDrawerFragment mNavigationDrawerFragmentFragment;
@@ -163,6 +170,45 @@ public class MainActivity extends ActionBarActivity implements
         if (location == null)
             return false;
         return true;
+
+    }
+
+    @Override
+    public void onServiceProviderItemSelected(Cursor cursor) {
+
+
+        Fragment fragment = new ServiceProviderDetailFragment();
+
+        Bundle arguments = new Bundle();
+
+        String providerName = cursor.getString(cursor.getColumnIndex(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_NAME));
+        arguments.putString(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_NAME, providerName);
+
+
+        String landLineNumber = cursor.getString(cursor.getColumnIndex(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LAND_LINE_NUMBER));
+        arguments.putString(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LAND_LINE_NUMBER, landLineNumber);
+
+        String emailAddress = cursor.getString(cursor.getColumnIndex(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_EMAIL_ADDRESS));
+        arguments.putString(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_EMAIL_ADDRESS, emailAddress);
+
+
+
+        String mobileNumber = cursor.getString(cursor.getColumnIndex(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_MOBILE_NUMBER));
+        arguments.putString(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_MOBILE_NUMBER, mobileNumber);
+
+        String remark = cursor.getString(cursor.getColumnIndex(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_REMARK));
+        arguments.putString(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_REMARK, remark);
+
+        String address = cursor.getString(cursor.getColumnIndex(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_ADDRESS));
+        arguments.putString(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_ADDRESS, address);
+
+
+
+        fragment.setArguments(arguments);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_container, fragment).commit();
 
     }
 }
