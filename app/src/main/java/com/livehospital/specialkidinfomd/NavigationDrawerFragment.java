@@ -34,8 +34,13 @@ public class NavigationDrawerFragment extends Fragment {
     // This interface is implemented by the main activity
     // This interface represents menu selection in the NavigationDrawer
      public interface MenuSelectionListener {
+        public void onSupportGroupMenuClicked();
         public void onSchoolMenuClicked();
         public void onABAMenuClicked();
+        public void onRDIMenuClicked();
+        public void onIntegratedProvidersMenuClicked();
+        public void onSpeechTherapistClicked();
+        public void onOTMenuClicked();
         public void onSetLocationMenuClicked();
 
     }
@@ -76,7 +81,10 @@ public class NavigationDrawerFragment extends Fragment {
         //load only static data inside a drawer
         List<Information> data = new ArrayList<>();
 
-        String[] titles = {"ABA Providers", "OT Providers", "Speech Therapist", "Special Schools","Set Location"};
+        //TODO - to put a for loop
+
+        String[] titles = {"Support Groups","ABA Providers","RDI providers", "OT Providers", "Speech Therapist",
+                "Integrated providers", "Special Schools","Set Location"};
         Information current = new Information();
 
         current.title = titles[0];
@@ -101,6 +109,24 @@ public class NavigationDrawerFragment extends Fragment {
 
         current.title = titles[4];
         data.add(current);
+
+        current = new Information();
+
+        current.title = titles[5];
+        data.add(current);
+
+        current = new Information();
+
+        current.title = titles[6];
+        data.add(current);
+
+        current = new Information();
+
+        current.title = titles[7];
+        data.add(current);
+
+
+
 
         return data;
     }
@@ -172,17 +198,36 @@ public class NavigationDrawerFragment extends Fragment {
     public void invokeMenu(int position) {
         switch (position) {
             case 0:
+                mCallback.onSupportGroupMenuClicked();
+                break;
+
+            case 1:
                 mCallback.onABAMenuClicked();
                 break;
 
+            case 2:
+                mCallback.onRDIMenuClicked();
+                break;
+
             case 3:
-                mCallback.onSchoolMenuClicked();
+                mCallback.onOTMenuClicked();
                 break;
 
             case 4:
-                mCallback.onSetLocationMenuClicked();
+                mCallback.onSpeechTherapistClicked();
                 break;
 
+            case 5:
+                mCallback.onIntegratedProvidersMenuClicked();
+                break;
+
+            case 6:
+                mCallback.onSchoolMenuClicked();
+                break;
+
+            case 7:
+                mCallback.onSetLocationMenuClicked();
+                break;
         }
     }
 

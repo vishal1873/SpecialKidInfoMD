@@ -5,7 +5,7 @@
      android:padding="10dp" >
 
 
-    <!-- Movie Title -->
+
     <TextView
         android:id="@+id/provider_name"
         android:layout_width="wrap_content"
@@ -14,7 +14,7 @@
         android:textStyle="bold"
         android:text="vishal" />
 
-    <!-- Rating -->
+
     <TextView
         android:id="@+id/provider_email_address"
         android:layout_width="fill_parent"
@@ -23,12 +23,23 @@
         android:text="Good"
         android:layout_below="@+id/provider_name" />
 
-    <!-- Genre -->
+
     <TextView
         android:id="@+id/provider_mobile_number"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/provider_email_address"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/genre"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="specialneed" />
+
+
+    <TextView
+        android:id="@+id/provider_sub_location"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/provider_mobile_number"
         android:layout_marginTop="5dp"
         android:textColor="@color/genre"
         android:textAppearance="?android:attr/textAppearanceSmall"

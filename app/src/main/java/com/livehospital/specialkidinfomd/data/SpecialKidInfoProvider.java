@@ -66,7 +66,8 @@ public class SpecialKidInfoProvider extends ContentProvider {
                 String location=  ServiceProviderInfo.getLocationFromUri(uri);
                 String type = ServiceProviderInfo.getTypeFromUri(uri);
                 selection = sTypeAndLocationSelection;
-                selectionArgs = new String[]{type,location};
+                //type is stored in lower case in database
+                selectionArgs = new String[]{type.toLowerCase(),location};
 
                 retCursor = getServiceProviderInfoWithLocationAndType(uri, projection, selection,selectionArgs, sortOrder);
                 break;

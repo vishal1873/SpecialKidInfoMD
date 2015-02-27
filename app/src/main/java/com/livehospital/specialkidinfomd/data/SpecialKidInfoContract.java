@@ -38,9 +38,12 @@ public class SpecialKidInfoContract {
         public static final String COLUMN_SERVICE_PROVIDER_LAND_LINE_NUMBER= "service_provider_land_line_number";
         public static final String COLUMN_SERVICE_PROVIDER_WEB_SITE= "service_provider_website";
         public static final String COLUMN_SERVICE_PROVIDER_LOCATION = "service_provider_location";
+        public static final String COLUMN_SERVICE_PROVIDER_SUB_lOCATION = "service_provider_sublocation";
 
         public static final String  COLUMN_SERVICE_PROVIDER_ADDRESS= "service_provider_address";
         public static final String COLUMN_SERVICE_PROVIDER_REMARK = "service_provider_remark";
+
+
 
 
         public static Uri buildServiceProviderUri(long id) {

@@ -57,6 +57,11 @@ public class ServiceProviderInfoAdapter extends CursorAdapter {
         TextView providerMobileNumber = (TextView) view.findViewById(R.id.provider_mobile_number);
         providerMobileNumber.setText(mobileNumber);
 
+
+        CharSequence sublocation = cursor.getString(cursor.getColumnIndex(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_SUB_lOCATION));
+        TextView sublocationView = (TextView) view.findViewById(R.id.provider_sub_location);
+        sublocationView.setText(sublocation);
+
         /*CharSequence website = cursor.getString(cursor.getColumnIndex(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_WEB_SITE));
         TextView providerWebsite = (TextView) view.findViewById(R.id.pr);
         providerWebsite.setText(website);

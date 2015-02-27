@@ -38,7 +38,7 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
             ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_WEB_SITE,
             ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_ADDRESS,
             ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_REMARK,
-
+            ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_SUB_lOCATION,
 
     };
 

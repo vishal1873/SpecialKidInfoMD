@@ -68,7 +68,7 @@ public class SpecialKidInfoSyncAdapter extends AbstractThreadedSyncAdapter {
             {
                 ContentValues data = new ContentValues();
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_NAME, sp.getName());
-                data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_TYPE, sp.getType());
+                data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_TYPE, sp.getType().toLowerCase());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_EMAIL_ADDRESS, sp.getEmailAddress());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_MOBILE_NUMBER, sp.getMobileNumber());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LAND_LINE_NUMBER, sp.getLandlineNumber());
@@ -76,6 +76,7 @@ public class SpecialKidInfoSyncAdapter extends AbstractThreadedSyncAdapter {
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LOCATION, sp.getLocation());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_ADDRESS, sp.getAddress());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_REMARK, sp.getRemark());
+                data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_SUB_lOCATION, sp.getSublocation());
 
                 Log.d(LOG_TAG, "The service provider"+sp.toString());
 

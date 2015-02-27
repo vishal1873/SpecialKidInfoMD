@@ -32,7 +32,8 @@ public class SpecialKidInfoDbHelper extends SQLiteOpenHelper {
                 SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_WEB_SITE + " TEXT NOT NULL, " +
                 SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LOCATION + " TEXT NOT NULL, " +
                 SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_ADDRESS + " TEXT NOT NULL, " +
-                SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_REMARK + " TEXT NOT NULL " +
+                SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_REMARK + " TEXT NOT NULL, " +
+                SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_SUB_lOCATION + " TEXT NOT NULL " +
 
                 " );";
 

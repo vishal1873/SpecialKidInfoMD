@@ -30,6 +30,13 @@ public class MainActivity extends ActionBarActivity implements
     public static final String LOCATION = "Location";
 
     public static final String SELECTED_SERVICE_PROVIDER_INFO = "selected_service_provider_info";
+    public static final String SCHOOL = "School";
+    public static final String ABA = "ABA";
+    public static final String RDI = "Rdi";
+    public static final String INTEGRATED_PROVIDER = "Integrated_Provider";
+    public static final String SPEECH_THERAPIST = "Speech_Therapist";
+    public static final String OT = "OT";
+    public static final String SUPPORT_GROUP = "support_group";
 
     private Toolbar toolbar;
     private NavigationDrawerFragment mNavigationDrawerFragmentFragment;
@@ -107,9 +114,14 @@ public class MainActivity extends ActionBarActivity implements
 
 
     @Override
+    public void onSupportGroupMenuClicked() {
+        menuAction(SUPPORT_GROUP);
+    }
+
+    @Override
     public void onSchoolMenuClicked() {
 
-        menuAction("school");
+        menuAction(SCHOOL);
 
     }
 
@@ -147,8 +159,31 @@ public class MainActivity extends ActionBarActivity implements
     @Override
     public void onABAMenuClicked() {
 
-        menuAction("ABA");
+        menuAction(ABA);
 
+    }
+
+    @Override
+    public void onRDIMenuClicked() {
+
+        menuAction(RDI);
+
+
+    }
+
+    @Override
+    public void onIntegratedProvidersMenuClicked() {
+        menuAction(INTEGRATED_PROVIDER);
+    }
+
+    @Override
+    public void onSpeechTherapistClicked() {
+        menuAction(SPEECH_THERAPIST);
+    }
+
+    @Override
+    public void onOTMenuClicked() {
+        menuAction(OT);
     }
 
     @Override
