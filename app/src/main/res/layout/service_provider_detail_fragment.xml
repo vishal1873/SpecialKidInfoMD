@@ -17,64 +17,155 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
         android:text="ProviderName"
         android:id="@+id/provider_name"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp" />
+
+    <View
+        android:id="@+id/name_divider"
+        android:layout_height="2dip"
+        android:background="#FF909090"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/provider_name"
+
+        android:layout_marginBottom="10dp" />
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="ProviderEmail Address"
-        android:id="@+id/provider_email_address"
-        android:layout_below="@+id/provider_name"
+        android:textStyle="bold"
+        android:text="Contact Details"
+        android:id="@+id/contact_details_header"
+        android:layout_below="@+id/name_divider"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="37dp" />
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="ProviderEmail Address"
+        android:id="@+id/provider_email_address"
+        android:layout_below="@+id/contact_details_header"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="5dp"
+        android:autoLink="email"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Provider PhoneNumber"
         android:id="@+id/provider_phone_number"
         android:layout_below="@+id/provider_email_address"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="33dp" />
+        android:layout_marginBottom="5dp"
+        android:autoLink="phone" />
+
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="this"
-        android:id="@+id/provider_address"
-        android:maxLines="20"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="www.website.com"
+        android:id="@+id/provider_website"
         android:layout_below="@+id/provider_phone_number"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="33dp"
+        android:layout_marginBottom="5dp"
+        android:autoLink="web"
+        />
 
-         />
+
+
+    <View
+        android:id="@+id/contact_details_divider"
+        android:layout_height="2dip"
+        android:background="#FF909090"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/provider_website"
+
+        android:layout_marginBottom="10dp" />
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="this"
-        android:id="@+id/provider_remark"
+        android:textStyle="bold"
+        android:text="Address"
+        android:id="@+id/address_header"
+        android:layout_alignTop="@+id/contact_details_divider"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Address"
+        android:id="@+id/provider_address"
         android:maxLines="20"
+
+
+        android:layout_below="@+id/address_header"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp" />
+
+
+
+    <View
+        android:id="@+id/contact_address_divider"
+        android:layout_height="2dip"
+        android:background="#FF909090"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/provider_address"
+
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        android:text="Information"
+        android:id="@+id/information_header"
+
         android:layout_below="@+id/provider_address"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="10dp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Information"
+
+        android:id="@+id/provider_remark"
+        android:maxLines="20"
+        android:layout_below="@+id/information_header"
 
         />
+
+
 
 
 </RelativeLayout>
