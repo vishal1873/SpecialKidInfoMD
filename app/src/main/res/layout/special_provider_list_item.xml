@@ -2,26 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-     android:padding="8dp" >
+     android:padding="10dp" >
 
-
-
-    <ImageView
-        android:id="@+id/thumbnail"
-        android:layout_width="80dp"
-        android:src="@drawable/ic_account_outline_grey600_24dp"
-        android:layout_height="80dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginRight="20dp" />
 
     <!-- Movie Title -->
     <TextView
         android:id="@+id/provider_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/thumbnail"
-        android:layout_toRightOf="@+id/thumbnail"
-        android:textSize="@dimen/title"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold"
         android:text="vishal" />
 
@@ -30,11 +19,9 @@
         android:id="@+id/provider_email_address"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/rating"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Good"
-        android:layout_below="@+id/provider_name"
-        android:layout_toRightOf="@+id/thumbnail"
-        android:layout_toEndOf="@+id/thumbnail" />
+        android:layout_below="@+id/provider_name" />
 
     <!-- Genre -->
     <TextView
@@ -43,22 +30,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/provider_email_address"
         android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/thumbnail"
         android:textColor="@color/genre"
-        android:textSize="@dimen/genre"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="specialneed" />
 
     <!-- Release Year -->
-    <TextView
-        android:id="@+id/provider_land_line_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/year"
-        android:textSize="@dimen/year"
-        android:text="1947" />
-
 
 
 </RelativeLayout>

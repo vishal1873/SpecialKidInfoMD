@@ -127,7 +127,7 @@ public class MainActivity extends ActionBarActivity implements
 
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.frame_container, fragment).commit();
+                    .replace(R.id.frame_container, fragment).addToBackStack(null).commit();
         }
         else
         {
@@ -139,8 +139,9 @@ public class MainActivity extends ActionBarActivity implements
 
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.frame_container, fragment).commit();
+                    .replace(R.id.frame_container, fragment).addToBackStack(null).commit();
         }
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @Override
@@ -203,12 +204,16 @@ public class MainActivity extends ActionBarActivity implements
         arguments.putString(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_ADDRESS, address);
 
 
+        String website = cursor.getString(cursor.getColumnIndex(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_WEB_SITE));
+        arguments.putString(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_WEB_SITE, website);
+
+
 
         fragment.setArguments(arguments);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.frame_container, fragment).commit();
+                .replace(R.id.frame_container, fragment).addToBackStack(null).commit();
 
     }
 }

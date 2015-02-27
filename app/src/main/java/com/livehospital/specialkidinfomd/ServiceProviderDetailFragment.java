@@ -33,6 +33,7 @@ public class ServiceProviderDetailFragment extends Fragment {
     private String mProviderWebsite;
     private String mProviderEmailAddress;
     private String mProviderAddress;
+    private String mWebsite;
 
 
     private OnFragmentInteractionListener mListener;
@@ -68,6 +69,7 @@ public class ServiceProviderDetailFragment extends Fragment {
             mProviderEmailAddress = getArguments().getString(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_EMAIL_ADDRESS);
             mProviderAddress = getArguments().getString(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_ADDRESS);
             mProviderPhone = getArguments().getString(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_MOBILE_NUMBER);
+            mWebsite = getArguments().getString(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_WEB_SITE);
             //mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -93,6 +95,9 @@ public class ServiceProviderDetailFragment extends Fragment {
 
         TextView providerRemarks = (TextView) rootView.findViewById(R.id.provider_remark);
         providerRemarks.setText(mRemark);
+
+        TextView website = (TextView) rootView.findViewById(R.id.provider_website);
+        website.setText(mWebsite);
 
 
 

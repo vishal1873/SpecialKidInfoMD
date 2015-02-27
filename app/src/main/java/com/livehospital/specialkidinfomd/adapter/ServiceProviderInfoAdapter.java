@@ -43,9 +43,9 @@ public class ServiceProviderInfoAdapter extends CursorAdapter {
 
 
 
-        CharSequence landLineNumber = cursor.getString(cursor.getColumnIndex(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LAND_LINE_NUMBER));
+        /*CharSequence landLineNumber = cursor.getString(cursor.getColumnIndex(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LAND_LINE_NUMBER));
         TextView providerLandLineView = (TextView) view.findViewById(R.id.provider_land_line_number);
-        providerLandLineView.setText(landLineNumber);
+        providerLandLineView.setText(landLineNumber);*/
 
         CharSequence emailAddress = cursor.getString(cursor.getColumnIndex(ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_EMAIL_ADDRESS));
         TextView providerEmailAddress = (TextView) view.findViewById(R.id.provider_email_address);
