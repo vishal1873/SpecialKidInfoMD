@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:id="@+id/serviceProviderDetail"
-    android:paddingLeft="20dp">
+    android:layout_marginLeft="20dp">
 
 
 
@@ -20,6 +20,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold"
         android:text="ProviderName"
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/provider_name"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -30,7 +31,8 @@
     <View
         android:id="@+id/name_divider"
         android:layout_height="2dip"
-        android:background="#FF909090"
+        android:background=  "@color/colorPrimaryLight"
+
         android:layout_width="match_parent"
         android:layout_below="@+id/provider_name"
 
@@ -40,27 +42,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold"
-        android:text="Contact Details"
-        android:id="@+id/contact_details_header"
-        android:layout_below="@+id/name_divider"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="10dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="ProviderEmail Address"
         android:id="@+id/provider_email_address"
-        android:layout_below="@+id/contact_details_header"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="5dp"
         android:autoLink="email"
-        />
+        android:textColor="@color/colorPrimaryText"
+        android:layout_below="@+id/name_divider" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -72,7 +62,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="5dp"
-        android:autoLink="phone" />
+        android:autoLink="phone"
+        android:textColor="@color/colorPrimaryText"/>
 
 
 
@@ -85,8 +76,9 @@
         android:layout_below="@+id/provider_phone_number"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:autoLink="web"
+        android:textColor="@color/colorPrimaryText"
         />
 
 
@@ -94,7 +86,7 @@
     <View
         android:id="@+id/contact_details_divider"
         android:layout_height="2dip"
-        android:background="#FF909090"
+        android:background=  "@color/colorPrimaryLight"
         android:layout_width="match_parent"
         android:layout_below="@+id/provider_website"
 
@@ -112,7 +104,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -126,18 +120,22 @@
         android:layout_below="@+id/address_header"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorPrimaryText"
+        />
 
 
 
     <View
         android:id="@+id/contact_address_divider"
         android:layout_height="2dip"
-        android:background="#FF909090"
+        android:background=  "@color/colorPrimaryLight"
         android:layout_width="match_parent"
         android:layout_below="@+id/provider_address"
 
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorPrimaryText"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -150,7 +148,9 @@
         android:layout_below="@+id/provider_address"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginBottom="10dp" />
 
 
     <TextView
@@ -162,6 +162,7 @@
         android:id="@+id/provider_remark"
         android:maxLines="20"
         android:layout_below="@+id/information_header"
+        android:textColor="@color/colorPrimaryText"
 
         />
 

@@ -82,7 +82,7 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
 
         mServiceProviderAdapter = new ServiceProviderInfoAdapter(getActivity(), null, 0);
 
-        View rootView = inflater.inflate(R.layout.fragment_photos, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_service_provider_list, container, false);
 
         // Get a reference to the ListView, and attach this adapter to it.
         ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);

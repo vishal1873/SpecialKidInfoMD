@@ -59,7 +59,10 @@ public class MainActivity extends ActionBarActivity implements
                 R.id.fragment_navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
 
+        //TODO: This needs to be see whether it is required after splash screen
         SpecialKidInfoSyncAdapter.initializeSyncAdapter(this);
+
+        menuAction(ABA);
 
 
     }

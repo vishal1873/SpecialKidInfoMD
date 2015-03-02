@@ -186,7 +186,8 @@ public class SpecialKidInfoSyncAdapter extends AbstractThreadedSyncAdapter {
         /*
          * Finally, let's do a com.livehospital.specialkidinfomd.sync to get things started
          */
-        syncImmediately(context);
+        //TODO: The syncimmediately was removed for splash screen. Need to do impact
+        //syncImmediately(context);
     }
 
 

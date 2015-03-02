@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.livehospital.specialkidinfomd" >
 
-
     <!-- Permissions required by the com.livehospital.specialkidinfomd.sync adapter -->
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -17,25 +17,16 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main_activity" >
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-
         </activity>
 
-
-
         <provider
-            android:name="com.livehospital.specialkidinfomd.data.SpecialKidInfoProvider"
+            android:name=".data.SpecialKidInfoProvider"
             android:authorities="com.livehospital.specialkidinfomd"
             android:exported="false"
             android:syncable="true" />
 
         <!-- SyncAdapter's dummy authentication service -->
-        <service android:name="com.livehospital.specialkidinfomd.sync.SpecialKidInfoAuthenticatorService" >
+        <service android:name=".sync.SpecialKidInfoAuthenticatorService" >
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
@@ -47,7 +38,7 @@
 
         <!-- The SyncAdapter service -->
         <service
-            android:name="com.livehospital.specialkidinfomd.sync.SpecialKidInfoSyncService"
+            android:name=".sync.SpecialKidInfoSyncService"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
@@ -58,8 +49,15 @@
                 android:resource="@xml/syncadapter" />
         </service>
 
+        <activity
+            android:name=".SplashScreenActivity"
+            android:label="@string/title_activity_splash_screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

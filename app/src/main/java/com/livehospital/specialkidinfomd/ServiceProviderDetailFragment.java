@@ -4,6 +4,11 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,6 +91,7 @@ public class ServiceProviderDetailFragment extends Fragment {
 
         TextView providerPhoneNumber = (TextView) rootView.findViewById(R.id.provider_phone_number);
         providerPhoneNumber.setText(mProviderPhone);
+
 
         TextView providerEmail = (TextView) rootView.findViewById(R.id.provider_email_address);
         providerEmail.setText(mProviderEmailAddress);

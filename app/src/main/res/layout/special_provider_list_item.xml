@@ -2,7 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-     android:padding="10dp" >
+
+
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
 
 
 
@@ -12,6 +16,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
         android:text="vishal" />
 
 
@@ -21,6 +26,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Good"
+        android:textColor="@color/colorSecondaryText"
         android:layout_below="@+id/provider_name" />
 
 
@@ -30,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/provider_email_address"
         android:layout_marginTop="5dp"
-        android:textColor="@color/genre"
+        android:textColor="@color/colorSecondaryText"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="specialneed" />
 
