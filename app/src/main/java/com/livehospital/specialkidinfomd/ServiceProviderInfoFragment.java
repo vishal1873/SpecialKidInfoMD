@@ -15,13 +15,19 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.livehospital.specialkidinfomd.adapter.ServiceProviderInfoAdapter;
+import com.livehospital.specialkidinfomd.common.Utility;
 import com.livehospital.specialkidinfomd.data.SpecialKidInfoContract;
 import com.livehospital.specialkidinfomd.data.SpecialKidInfoContract.ServiceProviderInfo;
 
 
 public class ServiceProviderInfoFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+
+
+    String mType = null;
+    String mLocation = null;
 
 
     private static final String[] SPECIAL_PROVIDER_COLUMNS = {
@@ -78,6 +84,11 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        // Get the type and location
+        GlobalState globalState = (GlobalState)getActivity().getApplicationContext();
+        mType = globalState.getServiceProviderType();
+        mLocation = globalState.getLocation();
+
         Log.d(LOG_TAG, "Entering on CreateView");
         //SpecialKidInfoSyncAdapter.syncImmediately(getActivity());
 
@@ -118,6 +129,10 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
                 ((Callback) getActivity()).onSetLocationMenuClicked();
             }
         });
+
+
+        TextView t = (TextView) rootView.findViewById(R.id.header_msg);
+        t.setText(Utility.capitalizeFirstLetter(mType)+" in "+Utility.capitalizeFirstLetter(mLocation));
 
 
         Log.d(LOG_TAG, "Exiting on CreateView");
@@ -189,7 +204,7 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
     public Uri getServiceProviderURI() {
 
 
-        String type = null;
+
 
         /*
         Bundle arguments = getArguments();
@@ -197,10 +212,11 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
             type = arguments.getString(MainActivity.MENU_SELECTED);
         }*/
 
-        GlobalState globalState = (GlobalState)getActivity().getApplicationContext();
-        type = globalState.getServiceProviderType();
 
-        Uri serviceProviderInfoUri = SpecialKidInfoContract.ServiceProviderInfo.buildServiceProviderWithType(type);
+
+
+
+        Uri serviceProviderInfoUri = SpecialKidInfoContract.ServiceProviderInfo.buildServiceProviderWithType(mType , mLocation);
         return serviceProviderInfoUri;
     }
 

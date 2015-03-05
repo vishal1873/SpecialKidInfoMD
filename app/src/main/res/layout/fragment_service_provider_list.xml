@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="special providers in Banagalore"
-            android:id="@+id/textView2"
+            android:id="@+id/header_msg"
             android:layout_marginTop="10dp" />
 
         <Button

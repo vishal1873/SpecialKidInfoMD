@@ -17,13 +17,13 @@ import android.widget.Toast;
 
 public class LocationFragment extends Fragment {
 
-    String  mfromMenu = null;
+
 
 
     private OnLocationSelectedListener mCallback;
 
     public interface OnLocationSelectedListener {
-        public void onLocationSelected(String location, String fromMenu);
+        public void onLocationSelected(String location);
     }
 
 
@@ -59,8 +59,6 @@ public class LocationFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-        GlobalState globalState = (GlobalState)getActivity().getApplicationContext();
-        mfromMenu = globalState.getServiceProviderType();
 
 
 
@@ -69,7 +67,7 @@ public class LocationFragment extends Fragment {
 
         //To move to String array
         // Listview Data
-        final String products[] = {"bangalore", "Delhi", "Pune", "Hyderabad"};
+        final String products[] = {"Bangalore", "Delhi", "Pune", "Hyderabad"};
 
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
@@ -83,11 +81,9 @@ public class LocationFragment extends Fragment {
                 String  itemValue    = (String)products[position];
 
                 // Show Alert
-                Toast.makeText(getActivity().getApplicationContext(),
-                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
-                        .show();
 
-                mCallback.onLocationSelected(itemValue,LocationFragment.this.mfromMenu);
+
+                mCallback.onLocationSelected(itemValue.toLowerCase());
 
 
             }

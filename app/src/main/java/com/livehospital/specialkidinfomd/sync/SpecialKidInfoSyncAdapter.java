@@ -73,7 +73,7 @@ public class SpecialKidInfoSyncAdapter extends AbstractThreadedSyncAdapter {
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_MOBILE_NUMBER, sp.getMobileNumber());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LAND_LINE_NUMBER, sp.getLandlineNumber());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_WEB_SITE, sp.getWebsite());
-                data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LOCATION, sp.getLocation());
+                data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LOCATION, sp.getLocation().toLowerCase());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_ADDRESS, sp.getAddress());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_REMARK, sp.getRemark());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_SUB_lOCATION, sp.getSublocation());

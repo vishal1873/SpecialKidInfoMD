@@ -95,10 +95,15 @@ public class MainActivity extends ActionBarActivity implements
     /*
        This callback is invoked when a location is selected
      */
-    public void onLocationSelected(String location, String fromMenu) {
+    public void onLocationSelected(String location) {
 
 
-       storeLocationInPreferences(location);
+
+        GlobalState globalState = (GlobalState) getApplicationContext();
+        String fromMenu = globalState.getServiceProviderType();
+
+        storeLocationInPreferences(location);
+        globalState.setLocation(location);
 
         if (fromMenu!=null)
             menuAction(fromMenu);
@@ -140,9 +145,6 @@ public class MainActivity extends ActionBarActivity implements
         if(isLocationSet()) {
 
             Fragment fragment = new ServiceProviderInfoFragment();
-
-
-
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.frame_container, fragment).addToBackStack(null).commit();
@@ -211,11 +213,20 @@ public class MainActivity extends ActionBarActivity implements
 
     public boolean isLocationSet()
     {
+
+        GlobalState globalState = (GlobalState)getApplicationContext();
+
         SharedPreferences settings = getSharedPreferences(Constants.USER_PREFERENCES, 0);
         String location = settings.getString(LOCATION, null);
-        if (location == null)
+
+
+        if (location == null) {
             return false;
-        return true;
+        }
+        else {
+            globalState.setLocation(location);
+            return true;
+        }
 
     }
 

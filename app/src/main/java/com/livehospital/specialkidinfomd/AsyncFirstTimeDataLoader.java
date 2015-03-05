@@ -41,6 +41,7 @@ public class AsyncFirstTimeDataLoader extends AsyncTask<String, Void,  Void> {
 
             ServiceProviderCollection response = api.getAllProviders().execute();
 
+            //TODO to refactor sync and AsyncTask to use common insertion code.
 
             //TODO to delete the database first and then add records
 
@@ -57,7 +58,7 @@ public class AsyncFirstTimeDataLoader extends AsyncTask<String, Void,  Void> {
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_MOBILE_NUMBER, sp.getMobileNumber());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LAND_LINE_NUMBER, sp.getLandlineNumber());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_WEB_SITE, sp.getWebsite());
-                data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LOCATION, sp.getLocation());
+                data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_LOCATION, sp.getLocation().toLowerCase());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_ADDRESS, sp.getAddress());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_REMARK, sp.getRemark());
                 data.put(SpecialKidInfoContract.ServiceProviderInfo.COLUMN_SERVICE_PROVIDER_SUB_lOCATION, sp.getSublocation());

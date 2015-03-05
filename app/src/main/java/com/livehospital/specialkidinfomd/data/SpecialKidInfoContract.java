@@ -51,11 +51,11 @@ public class SpecialKidInfoContract {
         }
 
 
-        public static Uri buildServiceProviderWithType (String type) {
+        public static Uri buildServiceProviderWithType(String type, String location) {
 
             //TODO: This hard coding of bangalore needs to be removed.
 
-            return CONTENT_URI.buildUpon().appendPath("bangalore").appendPath(type).build();
+            return CONTENT_URI.buildUpon().appendPath(location.toLowerCase()).appendPath(type).build();
         }
 
 
