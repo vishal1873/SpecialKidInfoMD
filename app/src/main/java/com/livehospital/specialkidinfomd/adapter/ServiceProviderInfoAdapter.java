@@ -2,19 +2,25 @@ package com.livehospital.specialkidinfomd.adapter;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.livehospital.specialkidinfomd.MainActivity;
 import com.livehospital.specialkidinfomd.R;
+import com.livehospital.specialkidinfomd.ServiceProviderInfoFragment;
 import com.livehospital.specialkidinfomd.data.SpecialKidInfoContract.ServiceProviderInfo;
 
 
 public class ServiceProviderInfoAdapter extends CursorAdapter {
 
     private Context context;
+
+
 
     public ServiceProviderInfoAdapter  (Context context, Cursor c, int flags){
         super(context, c, flags);
@@ -25,16 +31,19 @@ public class ServiceProviderInfoAdapter extends CursorAdapter {
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
 
-
+        //TODO: To add view holder.
         int layoutId = -1;
-        layoutId = R.layout.special_provider_list_item;
 
+
+
+        layoutId = R.layout.special_provider_list_item;
         View view = LayoutInflater.from(context).inflate(layoutId, parent, false);
         return view;
     }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+
 
 
         TextView providerNameView = (TextView) view.findViewById(R.id.provider_name);
@@ -70,6 +79,7 @@ public class ServiceProviderInfoAdapter extends CursorAdapter {
 
 
     }
+
 
 
 

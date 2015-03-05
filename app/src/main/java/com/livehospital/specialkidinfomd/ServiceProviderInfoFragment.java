@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.livehospital.specialkidinfomd.adapter.ServiceProviderInfoAdapter;
@@ -20,7 +21,7 @@ import com.livehospital.specialkidinfomd.data.SpecialKidInfoContract;
 import com.livehospital.specialkidinfomd.data.SpecialKidInfoContract.ServiceProviderInfo;
 
 
-public class ServiceProviderInfoFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>  {
+public class ServiceProviderInfoFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
 
     private static final String[] SPECIAL_PROVIDER_COLUMNS = {
@@ -43,7 +44,6 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
     };
 
 
-
     public interface OnFragmentInteractionListener {
         public void showDrawerToggle(boolean showDrawerToggle);
     }
@@ -55,8 +55,9 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
 
     public static final int COL_PROVIDER_NAME = 1;
     private static final int SERVICE_PROVIDER_LOADER = 0;
-	
-	public ServiceProviderInfoFragment(){}
+
+    public ServiceProviderInfoFragment() {
+    }
 
 
     private OnFragmentInteractionListener mListener;
@@ -75,7 +76,7 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
 
         Log.d(LOG_TAG, "Entering on CreateView");
         //SpecialKidInfoSyncAdapter.syncImmediately(getActivity());
@@ -100,7 +101,7 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
                             .putExtra(DetailActivity.DATE_KEY, cursor.getString(COL_WEATHER_DATE));
                     startActivity(intent);*/
 
-                    ((Callback)getActivity())
+                    ((Callback) getActivity())
                             .onServiceProviderItemSelected(cursor);
                 }
 
@@ -108,10 +109,20 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
         });
 
 
+        Button b = (Button) rootView.findViewById(R.id.location_button);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                ((Callback) getActivity()).onSetLocationMenuClicked();
+            }
+        });
+
+
         Log.d(LOG_TAG, "Exiting on CreateView");
 
         return rootView;
-
 
 
     }
@@ -140,7 +151,6 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
 
 
-
         Log.d(LOG_TAG, "Entering  onCreateLoader(");
 
         Uri serviceProviderInfoUri = getServiceProviderURI();
@@ -158,7 +168,6 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
         );
 
 
-
     }
 
     /**
@@ -171,15 +180,25 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
          * DetailFragmentCallback for when an item has been selected.
          */
         public void onServiceProviderItemSelected(Cursor cursor);
+
+        public void onSetLocationMenuClicked();
+
+
     }
 
     public Uri getServiceProviderURI() {
 
-        Bundle arguments = getArguments();
+
         String type = null;
+
+        /*
+        Bundle arguments = getArguments();
         if (arguments != null) {
             type = arguments.getString(MainActivity.MENU_SELECTED);
-        }
+        }*/
+
+        GlobalState globalState = (GlobalState)getActivity().getApplicationContext();
+        type = globalState.getServiceProviderType();
 
         Uri serviceProviderInfoUri = SpecialKidInfoContract.ServiceProviderInfo.buildServiceProviderWithType(type);
         return serviceProviderInfoUri;

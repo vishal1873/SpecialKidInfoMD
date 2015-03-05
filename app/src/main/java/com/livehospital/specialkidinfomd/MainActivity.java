@@ -100,8 +100,10 @@ public class MainActivity extends ActionBarActivity implements
 
        storeLocationInPreferences(location);
 
-        if (fromMenu!=null);
+        if (fromMenu!=null)
             menuAction(fromMenu);
+        else
+            menuAction(ABA);
 
     }
 
@@ -131,14 +133,15 @@ public class MainActivity extends ActionBarActivity implements
     private  void  menuAction(String type)
     {
 
+        GlobalState globalState = (GlobalState)getApplicationContext();
+        globalState.setServiceProviderType(type);
+
         // if the location is set show the menu option according to the location.
         if(isLocationSet()) {
 
             Fragment fragment = new ServiceProviderInfoFragment();
 
-            Bundle arguments = new Bundle();
-            arguments.putString(MENU_SELECTED, type);
-            fragment.setArguments(arguments);
+
 
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
@@ -148,9 +151,7 @@ public class MainActivity extends ActionBarActivity implements
         {
             Fragment fragment = new LocationFragment();
 
-            Bundle arguments = new Bundle();
-            arguments.putString(MENU_SELECTED, type);
-            fragment.setArguments(arguments);
+
 
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
@@ -195,6 +196,12 @@ public class MainActivity extends ActionBarActivity implements
     public void onSetLocationMenuClicked() {
 
         Fragment fragment = new LocationFragment();
+
+        /*
+        Bundle arguments = new Bundle();
+        arguments.putString(MENU_SELECTED, serviceProviderType);
+        fragment.setArguments(arguments);
+        */
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()

@@ -58,10 +58,11 @@ public class LocationFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
 
-        Bundle b = getArguments();
 
-        if(b!=null)
-            mfromMenu = b.getString(MainActivity.MENU_SELECTED);
+        GlobalState globalState = (GlobalState)getActivity().getApplicationContext();
+        mfromMenu = globalState.getServiceProviderType();
+
+
 
         View rootView = inflater.inflate(R.layout.location_fragment,container, false);
 
