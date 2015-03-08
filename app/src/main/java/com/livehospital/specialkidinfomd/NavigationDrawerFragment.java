@@ -6,7 +6,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,9 +17,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.livehospital.specialkidinfomd.adapter.NavigationDrawerAdapter;
 import com.livehospital.specialkidinfomd.common.Constants;
@@ -33,14 +38,21 @@ public class NavigationDrawerFragment extends Fragment {
 
     // This interface is implemented by the main activity
     // This interface represents menu selection in the NavigationDrawer
-     public interface MenuSelectionListener {
+    public interface MenuSelectionListener {
         public void onSupportGroupMenuClicked();
+
         public void onSchoolMenuClicked();
+
         public void onABAMenuClicked();
+
         public void onRDIMenuClicked();
+
         public void onIntegratedProvidersMenuClicked();
+
         public void onSpeechTherapistClicked();
+
         public void onOTMenuClicked();
+
         public void onSetLocationMenuClicked();
 
     }
@@ -62,6 +74,9 @@ public class NavigationDrawerFragment extends Fragment {
     private MenuSelectionListener mCallback;
 
 
+
+
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -74,6 +89,9 @@ public class NavigationDrawerFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnHeadlineSelectedListener");
         }
+
+
+        setHasOptionsMenu(true);
     }
 
 
@@ -83,8 +101,8 @@ public class NavigationDrawerFragment extends Fragment {
 
         //TODO - to put a for loop
 
-        String[] titles = {"Support Groups","ABA Providers","RDI providers", "OT Providers", "Speech Therapist",
-                "Integrated providers", "Special Schools","Set Location"};
+        String[] titles = {"Support Groups", "ABA Providers", "RDI providers", "OT Providers", "Speech Therapist",
+                "Integrated providers", "Special Schools", "Set Location"};
         Information current = new Information();
 
         current.title = titles[0];
@@ -126,8 +144,6 @@ public class NavigationDrawerFragment extends Fragment {
         data.add(current);
 
 
-
-
         return data;
     }
 
@@ -147,11 +163,18 @@ public class NavigationDrawerFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        FragmentActivity activity = (FragmentActivity)mCallback;
+
         super.onCreate(savedInstanceState);
         mUserLearnedDrawer = Boolean.valueOf(readFromPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, "false"));
         if (savedInstanceState != null) {
             mFromSavedInstanceState = true;
         }
+
+       // activity.getSupportFragmentManager().addOnBackStackChangedListener(mOnBackStackChangedListener);
+
+
     }
 
     public NavigationDrawerFragment() {
@@ -175,7 +198,7 @@ public class NavigationDrawerFragment extends Fragment {
             public void onClick(View view, int position) {
 
                 Log.d(LOG_TAG, "Inside click " + position);
-               invokeMenu(position);
+                invokeMenu(position);
                 mDrawerLayout.closeDrawers();
             }
 
@@ -188,6 +211,8 @@ public class NavigationDrawerFragment extends Fragment {
                 mDrawerLayout.closeDrawers();
             }
         }));
+
+
 
         return layout;
 
@@ -231,6 +256,26 @@ public class NavigationDrawerFragment extends Fragment {
         }
     }
 
+    private void setActionBarArrowDependingOnFragmentsBackStack() {/*
+
+        ActionBarActivity actionBarActivity = (ActionBarActivity)  mCallback;
+
+        FragmentActivity activity = (FragmentActivity) mCallback;
+        int backStackEntryCount = activity.getSupportFragmentManager().getBackStackEntryCount();
+        boolean flag = (backStackEntryCount == 0);
+        mDrawerToggle.setDrawerIndicatorEnabled(flag);
+        mDrawerToggle.setHomeAsUpIndicator(actionBarActivity.getV7DrawerToggleDelegate().getThemeUpIndicator());
+
+        if(!flag)
+         popBackStackToTop(activity);
+
+        */
+
+    }
+
+
+
+
     public void setUp(int fragmentId, DrawerLayout drawerLayout, Toolbar toolbar) {
 
         containerView = getActivity().findViewById(fragmentId);
@@ -245,14 +290,14 @@ public class NavigationDrawerFragment extends Fragment {
                 mDrawerLayout,/* DrawerLayout object */
                 toolbar,
                 R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
-                R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
+                R.string.navigation_drawer_close  /* "close drawer" description for acce    ssibility */
         ) {
             @Override
             public void onDrawerClosed(View drawerView) {
 
                 super.onDrawerClosed(drawerView);
                 //getActivity().invalidateOptionsMenu();
-
+               // setActionBarArrowDependingOnFragmentsBackStack();
             }
 
             @Override
@@ -266,23 +311,70 @@ public class NavigationDrawerFragment extends Fragment {
                     mUserLearnedDrawer = true;
                     saveToPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, mUserLearnedDrawer + "");
                 }
-                //getActivity().invalidateOptionsMenu();
+
             }
         };
+
+
 
 
         if (!mUserLearnedDrawer && !mFromSavedInstanceState) {
             mDrawerLayout.openDrawer(containerView);
         }
 
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        ActionBarActivity ab = (ActionBarActivity)getActivity();
 
-        mDrawerLayout.post(new Runnable() {
+       mDrawerLayout.setDrawerListener(mDrawerToggle);
+         mDrawerLayout.post(new Runnable() {
             @Override
             public void run() {
                 mDrawerToggle.syncState();
             }
         });
+
+
+
+    }
+
+
+    public void createUpButton()
+    {
+
+
+        final FragmentActivity  activity = (FragmentActivity) getActivity();
+        int backStackEntryCount = activity.getSupportFragmentManager().getBackStackEntryCount();
+        boolean flag = (backStackEntryCount == 0);
+
+        if(!flag) {
+            mDrawerToggle.setDrawerIndicatorEnabled(false);
+            ActionBarActivity ab = (ActionBarActivity) getActivity();
+            mDrawerToggle.setHomeAsUpIndicator(ab.getV7DrawerToggleDelegate().getThemeUpIndicator());
+
+            //This method only works when   mDrawerToggle.setDrawerIndicatorEnabled(false) is set to false;
+            mDrawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    final FragmentActivity  activity = (FragmentActivity) getActivity();
+                    int backStackEntryCount = activity.getSupportFragmentManager().getBackStackEntryCount();
+                    boolean flag = (backStackEntryCount == 1);
+                    if(!flag)
+                        activity.onBackPressed();
+                    else
+                        mDrawerToggle.setDrawerIndicatorEnabled(true);
+
+                }
+
+
+            });
+        }else
+        {
+            mDrawerToggle.setDrawerIndicatorEnabled(true);
+            //mDrawerToggle.syncState();
+        }
+
     }
 
 
@@ -336,5 +428,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
 
-}
 
+
+
+}

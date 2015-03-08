@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.provider.SyncStateContract;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -42,6 +43,12 @@ public class MainActivity extends ActionBarActivity implements
     private NavigationDrawerFragment mNavigationDrawerFragmentFragment;
 
 
+
+    public Toolbar getToolbar()
+    {
+        return toolbar;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +57,8 @@ public class MainActivity extends ActionBarActivity implements
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
 
 
         mNavigationDrawerFragmentFragment = (NavigationDrawerFragment)
@@ -77,15 +86,6 @@ public class MainActivity extends ActionBarActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
 
         return super.onOptionsItemSelected(item);
@@ -140,6 +140,8 @@ public class MainActivity extends ActionBarActivity implements
 
         GlobalState globalState = (GlobalState)getApplicationContext();
         globalState.setServiceProviderType(type);
+
+        mNavigationDrawerFragmentFragment.createUpButton();
 
         // if the location is set show the menu option according to the location.
         if(isLocationSet()) {
@@ -272,4 +274,11 @@ public class MainActivity extends ActionBarActivity implements
                 .replace(R.id.frame_container, fragment).addToBackStack(null).commit();
 
     }
+
+
+
+
+
+
+
 }

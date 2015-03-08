@@ -28,6 +28,7 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
 
     String mType = null;
     String mLocation = null;
+    View mRootView;
 
 
     private static final String[] SPECIAL_PROVIDER_COLUMNS = {
@@ -152,15 +153,13 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
     }
 
 
-/* Need to see this
+
     @Override
     public void onResume() {
         super.onResume();
-        if (mLocation != null && !mLocation.equals(Utility.getPreferredLocation(getActivity()))) {
-            getLoaderManager().restartLoader(FORECAST_LOADER, null, this);
-        }
+
     }
-*/
+
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -220,11 +219,7 @@ public class ServiceProviderInfoFragment extends Fragment implements LoaderManag
         return serviceProviderInfoUri;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        //mListener.showDrawerToggle(false);
-    }
+
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
